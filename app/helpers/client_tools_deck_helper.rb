@@ -11,27 +11,43 @@ module ClientToolsDeckHelper
   end
   
   def render_jquery_summary_card
-    'Just an awesome starting point.  Very few web applications are found the do not use jQuery.<p>TEST</p><p>TEST</p><p>TEST</p><p>TEST</p><p>TEST</p><p>TEST</p>'.html_safe
+    'Just an awesome starting point.  Very few web applications are found the do not use jQuery'.html_safe
   end
   
   def render_jquery_detail_card
-    "Please reference http://jquery.com/ for more info"
+    "Please reference #{link_to nil, 'http://jquery.com/'} for more info".html_safe
   end
 
   def render_bootstrap_summary_card
-    'Bootstrap'
+    'Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.'
+  end
+
+  def render_bootstrap_detail_card
+    "Please reference #{link_to nil, 'http://getbootstrap.com/'} for more info".html_safe
   end
   
   def render_font_awesome_summary_card
-    'Font Awesome'
+    'Font Awesome gives you scalable vector icons that can instantly be customized - size, color, drop shadow, and anything that can be done with the power of CSS.'
+  end
+
+  def render_font_awesome_detail_card
+    "Please reference #{link_to nil, 'http://fortawesome.github.io/Font-Awesome/'} for more info".html_safe
   end
   
   def render_gridster_summary_card
-    'Gridster'
+    'Gridster is a jQuery plugin that allows building intuitive draggable layouts from elements spanning multiple columns'
   end
-  
+
+  def render_gridster_detail_card
+    "Please reference #{link_to nil, 'http://gridster.net/'} for more info".html_safe
+  end
+
   def render_exif_summary_card
-    'EXIF'.html_safe
+    'A JavaScript library for reading EXIF meta data from JPEG image files.'.html_safe
+  end
+
+  def render_exif_detail_card
+    "Please reference #{link_to nil, 'https://github.com/jseidelin/exif-js'} for more info".html_safe
   end
   
   def render_datatables_summary_card
