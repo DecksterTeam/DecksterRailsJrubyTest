@@ -31,5 +31,4 @@ else
 
 	jruby -S gem install bundler
 	jruby -S gem install puma
-        jruby -S gem install rails -v 4.0.10
 fi
