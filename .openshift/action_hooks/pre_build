@@ -2,6 +2,7 @@
 
 . "${OPENSHIFT_REPO_DIR}.openshift/config"
 
+
 JRUBY_PATH="jruby-$VERSION"
 JRUBY_ARCH="jruby-bin-$VERSION.tar.gz"
 
