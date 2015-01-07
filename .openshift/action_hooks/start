@@ -2,9 +2,7 @@
 
 cd $OPENSHIFT_REPO_DIR
 
-echo $OPENSHIFT_REPO_DIR
-
-. "${OPENSHIFT_REPO_DIR}.openshift/config"
+. ".openshift/config"
 
 PATH="${OPENSHIFT_DATA_DIR}jruby-$VERSION/bin:$PATH"
 

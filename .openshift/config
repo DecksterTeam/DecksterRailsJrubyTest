@@ -1,0 +1,2 @@
+VERSION=1.7.2
+RACK_ENV=production
