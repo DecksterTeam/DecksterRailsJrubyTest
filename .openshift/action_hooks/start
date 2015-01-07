@@ -1,4 +1,6 @@
-PENSHIFT_REPO_DIR
+#!/bin/bash
+
+cd $OPENSHIFT_REPO_DIR
 
 . ".openshift/config"
 
