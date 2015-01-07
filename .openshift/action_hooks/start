@@ -1,5 +1,33 @@
-#!/bin/bash
-# The logic to start up your application should be put in this
-# script. The application will work only if it binds to
-# $OPENSHIFT_DIY_IP:8080
-nohup $OPENSHIFT_REPO_DIR/diy/testrubyserver.rb $OPENSHIFT_DIY_IP $OPENSHIFT_REPO_DIR/diy |& /usr/bin/logshifter -tag diy &
+PENSHIFT_REPO_DIR
+
+. ".openshift/config"
+
+PATH="${OPENSHIFT_DATA_DIR}jruby-$VERSION/bin:$PATH"
+
+if [[ -e Gemfile ]]; then
+	ahash=`sha1sum Gemfile`
+	if [[ -e "${OPENSHIFT_DATA_DIR}Gemfile.hsh" ]]; then
+		ohash=`cat ${OPENSHIFT_DATA_DIR}Gemfile.hsh`
+	else
+		ohash=''
+	fi
+
+	if [[ "$ahash" == "$ohash" ]]; then
+		echo "No change in Gemfile"
+	else
+		jruby -S bundle install
+		echo "$ahash" > ${OPENSHIFT_DATA_DIR}Gemfile.hsh
+	fi
+fi
+
+echo "Starting JRuby application!"
+
+if [[ -e config.rb ]]; then
+	nohup bash -c "exec 'jruby' '--1.9' 'config.rb' &> ${OPENSHIFT_LOG_DIR}jruby.log" &> /dev/null &
+	echo $! > .openshift/application.pid
+elif [[ -e config.ru ]]; then
+	nohup bash -c "exec 'jruby' '--1.9' '-S' 'rails' 's' 'Puma' '-b' 'tcp://$OPENSHIFT_INTERNAL_IP:$OPENSHIFT_INTERNAL_PORT' '-e' '$RACK_ENV' '--pidfile' '.openshift/application.pid' &> ${OPENSHIFT_LOG_DIR}jruby.log"  &> /dev/null &
+else
+	echo "Do not know what to do!"
+fi
+

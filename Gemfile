@@ -43,3 +43,5 @@ end
 
 gem 'deckster', :git => 'https://github.com/DecksterTeam/DecksterRails.git', :branch => 'develop'
 
+gem 'puma'
+
