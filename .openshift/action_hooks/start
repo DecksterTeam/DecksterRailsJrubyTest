@@ -17,7 +17,7 @@ if [[ -e Gemfile ]]; then
 	if [[ "$ahash" == "$ohash" ]]; then
 		echo "No change in Gemfile"
 	else
-		jruby -S bundle install
+		jruby -S bundle install --verbose
 		echo "$ahash" > ${OPENSHIFT_DATA_DIR}Gemfile.hsh
 	fi
 fi
