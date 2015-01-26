@@ -4,6 +4,7 @@ DecksterTest::Application.routes.draw do
   match 'client_tools_deck' => 'application#client_tools_deck', as: :client_tools_deck, via: :all
   match 'card_library_deck' => 'application#card_library_deck', as: :card_library_deck, via: :all
   match 'sample_contacts_table' => 'application#sample_contacts_table', as: :sample_contacts_table, via: :all
+  match 'sample_funtime_deck' => 'application#sample_funtime_deck', as: :sample_funtime_deck, via: :all
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

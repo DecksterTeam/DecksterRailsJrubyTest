@@ -1,6 +1,7 @@
 module CardLibraryDeckHelper
   def render_card_library_deck
-    render_deckster_deck :card_library, [
+    deck_config = {id: 'card_library'}
+    render_deckster_deck deck_config, [
         {card: :custom, load: :async, row: 1, col: 1, sizex: 1, sizey: 1},
         {card: :custom_with_partial, load: :async, row: 1, col: 2, sizex: 1, sizey: 1},
         {card: :icon_counts, load: :async, row: 1, col: 3, sizex: 1, sizey: 1},

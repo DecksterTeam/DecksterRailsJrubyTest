@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper Deckster::Engine.helpers
+  include Rails.application.routes.url_helpers
 
   def client_tools_deck
   end
@@ -12,5 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def sample_contacts_table
+  end
+
+  def sample_funtime_deck
   end
 end
