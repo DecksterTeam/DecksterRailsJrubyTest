@@ -19,8 +19,8 @@ module CardLibraryDeckHelper
 
   def collect_first_data
     [
-        { percent: 60, description: 'friends' },
-        { percent: 35, description: 'EoE' }
+        { percent: 60, description: 'One' },
+        { percent: 35, description: 'Two' }
     ]
   end
 
