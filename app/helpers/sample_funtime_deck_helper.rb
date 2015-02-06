@@ -1,24 +1,15 @@
 module SampleFuntimeDeckHelper
   def render_sample_funtime_deck
     deck_config = {id: 'party', controls: ['refresh', 'search']}
-    people_visualizations = [
-        {id: 'friends_radial_chart', type: 'radial', title: 'Friends', data_source: 'collect_friends_data', description: 'friend desc', showLegend: false, theme: 'green', style: 'concentric'},
-        {id: 'enemies_radial_chart', type: 'radial', title: 'Enemies', data_source: 'collect_enemies_data', description: 'enemy desc'},
-        {id: 'time_radial_chart', type: 'radial', title: 'Time', data_source: 'collect_time_data', sort: true},
-    ]
-    ice_cream_visualizations = [
-        {id: 'icecream_radial_chart', type: 'radial', title: 'Ice Cream', data_source: 'collect_icecream_data', description: 'Flavors', style: 'cumulative'},
-    ]
-
     render_deckster_deck deck_config, [
-        {card: :balloons, load: :async, title: "Balloons", row: 1, col: 2, sizex: 1, sizey: 1, sharedView: true}, #example sharedView
+        {card: :balloons, load: :whatever, title: "Balloons", row: 1, col: 2, sizex: 1, sizey: 1, sharedView: true}, #example sharedView
         {card: :streamers, load: :async, title: "Streamers", row: 1, col: 2, sizex: 1, sizey: 1}, #example with extended popover
         {card: :cupcakes, load: :async, title: "Cupcakes", row: 1, col: 2, sizex: 1, sizey: 1},
         {card: :pinata, load: :async, title: "Pinata", row: 1, col: 2, sizex: 1, sizey: 1},
-        {card: :beer, load: :async, title: "Beer", row: 1, col: 2, sizex: 1, sizey: 1, display: 'none'}, #example of hidden card
+        {card: :beer, load: :async, title: "Beer", row: 1, col: 2, sizex: 1, sizey: 1, expandable: false }, #example of unexpandable card
         {card: :music, load: :async, title: "Music", row: 1, col: 2, sizex: 1, sizey: 1, display: 'none'}, #example of hidden card
-        {card: :people, load: :async, title: "People", row: 1, col: 1, sizex: 2, sizey: 1, visualizations: people_visualizations},
-        {card: :icecream, load: :async, title: "Ice Cream", row: 1, col: 1, sizex: 1, sizey: 1, visualizations: ice_cream_visualizations}
+        {card: :people, load: :async, title: "People", row: 1, col: 1, sizex: 2, sizey: 1},
+        {card: :icecream, load: :async, title: "Ice Cream", row: 1, col: 1, sizex: 1, sizey: 1}
     ]
   end
 
@@ -26,12 +17,20 @@ module SampleFuntimeDeckHelper
     [
       { percent: 20, description: 'Vanilla'},
       { percent: 50, description: 'Chocolate'},
-      { percent: 30, description: 'Strawberry'}
+      { percent: 10, description: 'Strawberry'}
     ]
   end
 
   def render_icecream_summary_card
-    ""
+    vis_config = {
+      visualizations: [
+        {id: 'icecream_radial_chart', type: 'radial', title: 'Ice Cream', data_source: 'collect_icecream_data', description: 'Flavors', style: 'cumulative', fill: true},
+        {id: 'icecream2_radial_chart', type: 'radial', title: 'Ice Cream2', data_source: 'collect_icecream_data', description: 'Flavors', style: 'cumulative', fill: false},
+      ],
+      diameter: 120
+    }
+    locals = { visualizations: render_visualization_cards(vis_config) }
+    render partial: 'application/ice_cream_summary', locals: locals
   end
 
   def render_icecream_detail_card
@@ -62,7 +61,16 @@ module SampleFuntimeDeckHelper
   end
 
   def render_people_summary_card
-    ""
+     vis_config = {
+         visualizations: [
+           {id: 'friends_radial_chart', type: 'radial', title: 'Friends', data_source: 'collect_friends_data', description: 'friend desc', show_legend: false, theme: 'green', style: 'concentric'},
+           {id: 'enemies_radial_chart', type: 'radial', title: 'Enemies', data_source: 'collect_enemies_data', description: 'enemy desc'},
+           {id: 'time_radial_chart', type: 'radial', title: 'Time', data_source: 'collect_time_data', sort: true},
+         ],
+         diameter: 120
+     }
+     locals = { visualizations: render_visualization_cards(vis_config) }
+     render partial: 'application/ice_cream_summary', locals: locals
   end
 
   def render_people_detail_card
