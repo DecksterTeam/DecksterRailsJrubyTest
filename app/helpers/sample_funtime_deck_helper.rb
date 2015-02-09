@@ -26,6 +26,7 @@ module SampleFuntimeDeckHelper
       visualizations: [
         {id: 'icecream_radial_chart', type: 'radial', title: 'Ice Cream', data_source: 'collect_icecream_data', description: 'Flavors', style: 'cumulative', fill: true},
         {id: 'icecream2_radial_chart', type: 'radial', title: 'Ice Cream2', data_source: 'collect_icecream_data', description: 'Flavors', style: 'cumulative', fill: false},
+        {id: 'icecream3_pie_chart', type: 'pie', title: 'Ice Cream2', data_source: 'collect_icecream_data', description: 'Flavors'},
       ],
       diameter: 120
     }
