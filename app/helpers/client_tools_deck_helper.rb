@@ -1,6 +1,7 @@
 module ClientToolsDeckHelper
   def render_client_tools_deck
-    render_deckster_deck :sample_deck_a, [
+    deck_config = {id: 'sample_deck_a'}
+    render_deckster_deck deck_config, [
         {card: :jquery, load: :async, title: 'jQuery', row: 1, col: 1, sizex: 1, sizey: 1},
         {card: :bootstrap, load: :async, row: 1, col: 2, sizex: 1, sizey: 1},
         {card: :font_awesome, load: :async, title: 'Font Awesome', load: :async, row: 1, col: 3, sizex: 1, sizey: 1},

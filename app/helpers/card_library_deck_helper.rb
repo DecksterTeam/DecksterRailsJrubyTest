@@ -1,15 +1,53 @@
 module CardLibraryDeckHelper
   def render_card_library_deck
-    render_deckster_deck :card_library, [
+    deck_config = {id: 'card_library'}
+    radial_visualizations = [
+        {id: 'first_radial_chart', type: 'radial', title: 'Title 1', data_source: 'collect_first_data', showLegend: false, theme: 'green', style: 'concentric'},
+        {id: 'second_radial_chart', type: 'radial', title: 'Title 2', data_source: 'collect_second_data'},
+        {id: 'third_radial_chart', type: 'radial', title: 'Title 3', data_source: 'collect_third_data', sort: true},
+    ]
+    render_deckster_deck deck_config, [
         {card: :custom, load: :async, row: 1, col: 1, sizex: 1, sizey: 1},
         {card: :custom_with_partial, load: :async, row: 1, col: 2, sizex: 1, sizey: 1},
         {card: :icon_counts, load: :async, row: 1, col: 3, sizex: 1, sizey: 1},
         {card: :bubble_chart, load: :async, row: 1, col: 4, sizex: 1, sizey: 1},
         {card: :cluster_dendrogram_tree, load: :async, row: 2, col: 1, sizex: 1, sizey: 1, title: 'Dendrogram Tree'},
         {card: :cluster_dendrogram_radial, load: :async, row: 2, col: 2, sizex: 1, sizey: 1, title: 'Dendrogram Radial'},
+        {card: :radial_charts, load: :async, title: "People", row: 1, col: 1, sizex: 2, sizey: 1, visualizations: radial_visualizations},
     ]
   end
-  
+
+  def collect_first_data
+    [
+        { percent: 60, description: 'One' },
+        { percent: 35, description: 'Two' }
+    ]
+  end
+
+  def collect_second_data
+    {
+        percent: 25,
+    }
+  end
+
+  def collect_third_data
+    [
+        { percent: 60, description: 'Hours' },
+        { percent: 100, description: 'Weeks' },
+        { percent: 80, description: 'Days' },
+        { percent: 40, description: 'Minutes' },
+        { percent: 20, description: 'Seconds' }
+    ]
+  end
+
+  def render_radial_charts_summary_card
+    ""
+  end
+
+  def render_radial_charts_detail_card
+    ""
+  end
+
   def render_custom_summary_card
     'Custom Card'.html_safe
   end

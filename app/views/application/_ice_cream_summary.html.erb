@@ -1,0 +1,20 @@
+<% if !visualizations.nil? %>
+    <div class="radial-card">
+        <% visualizations.each do |viz| %>
+            <%= viz %>
+        <% end %>
+    </div>
+<% end %>
+
+<script>
+    window.decksterjs.add_card("icecream", new function () {
+        this.state = "default";
+        this.foo = "bar";
+        this.get_state = function() {
+            return { state: this.state };
+        };
+        this.set_state = function(state) {
+            this.state = state;
+        };
+    })
+</script>
